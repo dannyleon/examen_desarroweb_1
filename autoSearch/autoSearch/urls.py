@@ -15,9 +15,23 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+
 from carros import views
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+from carros.views import carlist, cardetail
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home, name='home.html')
-]
+    url(r'^$', views.home, name='home.html'),
+
+    url(r'^carlist$',carlist.as_view(), name = 'CarList'),
+
+    url(r'^cardetail/(?P<pk>[0-9]+)/$', cardetail.as_view(),name= 'CarDetail'),
+
+
+
+]+ static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
