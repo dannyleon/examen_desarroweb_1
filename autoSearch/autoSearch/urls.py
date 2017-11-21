@@ -21,7 +21,7 @@ from carros import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from carros.views import carlist, cardetail
+from carros.views import carlist, cardetail,CarCreateView,CarListView,CarUpdateView,CarDeleteView
 
 
 urlpatterns = [
@@ -30,8 +30,19 @@ urlpatterns = [
 
     url(r'^carlist$',carlist.as_view(), name = 'CarList'),
 
+    url(r'^cars/create$', CarCreateView.as_view(), name='CarCreate'),
+
+    url(r'^cars/listc/$', CarListView.as_view(), name='car_list'),
+
     url(r'^cardetail/(?P<pk>[0-9]+)/$', cardetail.as_view(),name= 'CarDetail'),
 
+    url(r'^cardetail/(?P<pk>[0-9]+)/edit/$', CarUpdateView.as_view(),name= 'CarEdit'),
+
+    url(r'^cardetail/(?P<pk>[0-9]+)/delete/$', CarDeleteView.as_view(),name= 'CarDelete'),
 
 
-]+ static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

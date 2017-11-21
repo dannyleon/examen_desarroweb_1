@@ -51,7 +51,7 @@
     <section class="jumbotron text-center">
       <div class="container">
         <h1 class="jumbotron-heading">Car Detail</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+        <p class="lead text-muted">Aprende Más de Este Carro</p>
         <p>
           <a href="#" class="btn btn-primary">Main call to action</a>
           <a href="#" class="btn btn-secondary">Secondary action</a>
@@ -62,14 +62,22 @@
     <div class="album text-muted">
       <div class="container">
 
+
         <div class="row">
 
 
 
           <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-            <p class="card-text">{{object.make}}</p>
-            <p class="card-text">{{object.Type}}</p>
+            {% if object.image %}
+
+            <img src='{{object.image.url}}' class='img-responsive' style='width:100%;' />
+
+            {%endif%}
+            <p class="card-text"><b>Marca:</b> {{object.make}}</p>
+            <p class="card-text"><b>Modelo:</b> {{object.Type}}</p>
+            <p class="card-text"><b>Año:</b> {{object.year}}</p>
+            <p class="card-text"><b>Color:</b> {{object.colour}}</p>
+            <p class="card-text"><b>Precio:</b> {{object.price}}</p>
           </div>
 
 
